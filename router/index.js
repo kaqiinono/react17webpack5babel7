@@ -11,8 +11,8 @@ import routes from './constant';
 const defaultUrl = '/';
 
 function getRoutes(rs) {
-  return rs.map((route, i) => {
-    return <RouteWithSubRoutes key={i} {...route} />;
+  return rs.map((route) => {
+    return <RouteWithSubRoutes key={route.path} {...route} />;
   });
 }
 
