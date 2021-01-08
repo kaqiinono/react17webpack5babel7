@@ -3,7 +3,7 @@ import './index.scss';
 const MainLayout = () => {
   return (
     <div className="main">
-      <header>header</header>
+      <header>{process.env.NODE_ENV}</header>
       <nav>nav</nav>
       <section>section</section>
       <aside>aside</aside>

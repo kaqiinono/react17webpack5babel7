@@ -1,6 +1,6 @@
+$bg-color: rgb(0, 0, 0, 0.65);
+
 .main {
-  font-family: segoe-ui_normal, Segoe UI, Segoe, Segoe WP, Helvetica Neue,
-    Helvetica, sans-serif;
   display: grid;
   grid-template-areas:
     'header header header'
@@ -10,31 +10,32 @@
   grid-template-columns: 15% 1fr 18%;
   grid-gap: 5px;
   height: 100vh;
-  margin: 0px;
+  color: white;
+  text-align: center;
 }
 
 header {
-  background: #707070;
+  background: $bg-color;
   grid-area: header;
 }
 
 nav {
-  background: #c9bfbf;
+  background: $bg-color;
   grid-area: nav;
 }
 
 section {
-  background: #ababab;
+  background: $bg-color;
   grid-area: section;
 }
 
 aside {
-  background: #c9c9c9;
+  background: $bg-color;
   grid-area: aside;
 }
 
 footer {
-  background: #707070;
+  background: $bg-color;
   grid-area: footer;
 }
 
