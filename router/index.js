@@ -5,22 +5,15 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import Header from '../src/component/MainLayout/Header';
-import { routes } from './constant';
+import MainLayout from '../src/component/MainLayout';
+import routes from './constant';
 
 const defaultUrl = '/';
-export default function RouteConfig() {
-  return (
-    <Router>
-      <div>
-        <Header />
-        <Switch>
-          {getRoutes(routes)}
-          <Route render={() => <Redirect to={defaultUrl} />} />
-        </Switch>
-      </div>
-    </Router>
-  );
+
+function getRoutes(rs) {
+  return rs.map((route, i) => {
+    return <RouteWithSubRoutes key={i} {...route} />;
+  });
 }
 
 function RouteWithSubRoutes(route) {
@@ -34,9 +27,15 @@ function RouteWithSubRoutes(route) {
   }
   return parent;
 }
-
-function getRoutes(rs) {
-  return rs.map((route, i) => {
-    return <RouteWithSubRoutes key={i} {...route} />;
-  });
+export default function RouteConfig() {
+  return (
+    <Router>
+      <MainLayout>
+        <Switch>
+          {getRoutes(routes)}
+          <Route render={() => <Redirect to={defaultUrl} />} />
+        </Switch>
+      </MainLayout>
+    </Router>
+  );
 }

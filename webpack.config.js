@@ -1,10 +1,11 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: {
-    index: './entry/index.js'
+    index: './entry/index.js',
   },
   output: {
     path: path.resolve(__dirname, './dist'),
@@ -38,9 +39,8 @@ module.exports = {
         test: /\.(scss|css)$/,
         exclude: /node_modules/,
         use: [
-          process.env.NODE_ENV !== "production"
-            ? "style-loader"
-            : MiniCssExtractPlugin.loader, {
+          MiniCssExtractPlugin.loader,
+          {
             loader: 'css-loader',
             options: {
               importLoaders: 1,
@@ -48,17 +48,18 @@ module.exports = {
           },
           {
             loader: 'resolve-url-loader',
-            options: { sourceMap: true }
+            options: { sourceMap: true },
           },
+          'postcss-loader',
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: true
-            }
+              sourceMap: true,
+            },
           },
-          'postcss-loader'],
+        ],
       },
-      //处理图片资源
+      // 处理图片资源
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/i,
         use: {
@@ -67,21 +68,21 @@ module.exports = {
             outputPath: 'img/',
             limit: 10 * 1024,
             // name: 'static/img/[folder]/[name].[ext]',
-            fallback: require.resolve('file-loader')
-          }
-        }
+            fallback: require.resolve('file-loader'),
+          },
+        },
       },
-      //处理字体文件
+      // 处理字体文件
       {
         test: /\.(eot|ttf|woof|woof2)$/i,
         use: {
           loader: 'url-loader',
           options: {
             outputPath: 'fonts/',
-            limit: 10 * 1024
-          }
-        }
+            limit: 10 * 1024,
+          },
+        },
       },
     ],
   },
-}
+};
