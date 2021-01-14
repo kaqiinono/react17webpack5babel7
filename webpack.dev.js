@@ -11,6 +11,6 @@ module.exports = merge(common, {
     open: true,
     hot: true,
     quiet: true,
-    port: 8000,
+    port: 8001,
   },
 });
